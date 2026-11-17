@@ -20,7 +20,11 @@
     }
     .topbar { display:flex; justify-content:space-between; align-items:center; gap:12px; }
     h1 { margin:0; font-size: clamp(21px, 6vw, 30px); line-height:1.1; letter-spacing:-.03em; }
-    .subtitle { margin:3px 0 0; color:#657083; font-size:13px; }\n    .calendar-status { margin:5px 0 0; color:#657083; font-size:11px; line-height:1.25; }\n    .calendar-status[data-state="error"], .calendar-status[data-state="setup"] { color:#8b3c35; }\n    .calendar-status[data-state="success"] { color:#386d49; }\n    #changeButton:disabled { opacity:.6; cursor:wait; }
+    .subtitle { margin:3px 0 0; color:#657083; font-size:13px; }
+    .calendar-status { margin:5px 0 0; color:#657083; font-size:11px; line-height:1.25; }
+    .calendar-status[data-state="error"], .calendar-status[data-state="setup"] { color:#8b3c35; }
+    .calendar-status[data-state="success"] { color:#386d49; }
+    #changeButton:disabled { opacity:.6; cursor:wait; }
     #changeButton {
       border:0; border-radius:999px; padding:10px 13px; background:#202a3a; color:#fff;
       font:600 13px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; white-space:nowrap;
@@ -64,7 +68,12 @@
     @media (min-width:700px) {
       body { max-width:1100px; margin:0 auto; padding:24px; gap:16px; }
       .grid { gap:14px; }
-      .tile { padding:18px; border-radius:18px; }\n      .course-symbol { height:58px; }\n      .course-symbol img { width:48px; height:48px; }\n      .course { font-size:18px; }\n      .count { font-size:60px; }\n      .count-label { font-size:14px; }
+      .tile { padding:18px; border-radius:18px; }
+      .course-symbol { height:58px; }
+      .course-symbol img { width:48px; height:48px; }
+      .course { font-size:18px; }
+      .count { font-size:60px; }
+      .count-label { font-size:14px; }
       .course { font-size:16px; }
       .instructor,.event { font-size:14px; }
       .count { font-size:56px; }
@@ -73,7 +82,9 @@
     @media (max-height:700px) and (max-width:699px) {
       body { padding-top:max(35px, calc(env(safe-area-inset-top) + 22px)); padding-bottom:max(7px, env(safe-area-inset-bottom)); gap:7px; }
       .grid { gap:6px; }
-      .tile { padding:7px; border-radius:12px; }\n      .course-symbol { height:30px; }\n      .course-symbol img { width:28px; height:28px; }
+      .tile { padding:7px; border-radius:12px; }
+      .course-symbol { height:30px; }
+      .course-symbol img { width:28px; height:28px; }
       .event { margin-top:5px; padding-top:4px; }
     }
   </style>
@@ -144,6 +155,8 @@
   </main>
 
 
-  <script src="https://accounts.google.com/gsi/client" async defer></script>\n  <script src="calendar-config.js"></script>\n  <script src="script.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="calendar-config.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
