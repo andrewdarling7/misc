@@ -1,0 +1,121 @@
+:root {
+  color-scheme: light;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #18202c;
+  background: #f6f7fb;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  min-height: 100svh;
+  margin: 0;
+  padding:
+    max(22px, calc(env(safe-area-inset-top) + 12px))
+    max(16px, env(safe-area-inset-right))
+    max(22px, calc(env(safe-area-inset-bottom) + 12px))
+    max(16px, env(safe-area-inset-left));
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.course-header {
+  display: grid;
+  grid-template-columns: 42px 58px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  min-height: 112px;
+  padding: 18px;
+  border: 1px solid rgba(26, 34, 48, .14);
+  border-radius: 20px;
+  background: var(--course-color, #e9e9f7);
+  box-shadow: 0 2px 8px rgba(20, 30, 45, .06);
+}
+
+.course-back {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 50%;
+  color: #18202c;
+  background: rgba(255, 255, 255, .42);
+  font-size: 29px;
+  line-height: 1;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.course-back:active { transform: scale(.94); }
+
+.course-icon {
+  display: block;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.course-heading { min-width: 0; }
+
+.course-id {
+  margin: 0;
+  font-size: clamp(23px, 6vw, 32px);
+  font-weight: 750;
+  line-height: 1.05;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+
+.course-professor {
+  margin: 5px 0 0;
+  color: rgba(24, 32, 44, .76);
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.resources {
+  display: grid;
+  gap: 11px;
+  margin-top: 20px;
+}
+
+.resource-link {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid #e2e6ee;
+  border-radius: 14px;
+  color: #354e78;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(20, 30, 45, .04);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.resource-link:active { transform: scale(.99); }
+.resource-link::after { content: "↗"; color: #657083; font-size: 18px; }
+
+main[data-course="MT5003"] { --course-color: #E3F5D9; }
+main[data-course="SS5003"] { --course-color: #E9E9F7; }
+main[data-course="BEL6201"] { --course-color: #FFEDC4; }
+main[data-course="SL5003"] { --course-color: #9b9bd4; }
+main[data-course="EH5003"] { --course-color: #f78191; }
+main[data-course="DT5003"] { --course-color: #b77ceb; }
+main[data-course="PT5003"] { --course-color: #2bdfec; }
+
+@media (min-width: 700px) {
+  body { padding-top: 32px; padding-bottom: 32px; }
+  .course-header { min-height: 132px; grid-template-columns: 46px 68px minmax(0, 1fr); gap: 18px; padding: 22px; }
+  .course-back { width: 44px; height: 44px; }
+  .course-icon { width: 64px; height: 64px; }
+  .resources { gap: 14px; margin-top: 24px; }
+  .resource-link { min-height: 60px; padding: 17px 20px; }
+}
