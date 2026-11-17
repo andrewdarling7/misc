@@ -92,7 +92,7 @@
       const cards = await response.json();
       const markerNames = new Set(["NEXT CLASS", "NEXT NEXT CLASS"]);
       const visibleCards = cards.filter(card => {
-        const normalizedName = (card.name || "").trim().replace(/\\s+/g, " ").toUpperCase();
+        const normalizedName = (card.name || "").trim().replace(/\s+/g, " ").toUpperCase();
         return !markerNames.has(normalizedName);
       });
       renderCards(container, visibleCards);
