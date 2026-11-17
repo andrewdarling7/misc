@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7fb">
+  <title>Privacy Policy · Classes Dashboard</title>
+  <style>
+    :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #18202c; background: #f6f7fb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 28px 18px; }
+    main { max-width: 720px; margin: 0 auto; padding: 26px; background: white; border: 1px solid #e2e6ee; border-radius: 18px; box-shadow: 0 4px 18px #18202c0d; }
+    h1 { margin: 0 0 6px; font-size: clamp(26px, 6vw, 34px); letter-spacing: -.03em; }
+    .updated { margin: 0 0 24px; color: #657083; font-size: 14px; }
+    h2 { margin: 24px 0 8px; font-size: 19px; }
+    p, li { font-size: 16px; line-height: 1.55; }
+    a { color: #315b9a; }
+    footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid #e2e6ee; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Classes Dashboard · Effective November 17, 2026</p>
+
+    <p>Classes Dashboard is a personal dashboard for viewing remaining class sessions in a Google Calendar. This policy explains how it handles Google Calendar data.</p>
+
+    <h2>Calendar access and use</h2>
+    <p>When you choose Connect Calendar or Sync, the dashboard asks Google for read-only Calendar access. Its current authorization scope is <code>calendar.readonly</code>, which technically permits the app to read calendars available to the authorizing Google Account. The dashboard’s code requests events only from the configured “3 - Classes” calendar.</p>
+    <p>The dashboard uses event titles, dates, recurrence information, and status returned by Google to count confirmed recurring class events whose titles begin with a course ID. It displays those counts in the dashboard. It does not use calendar contents for advertising, profiling, or any other purpose.</p>
+
+    <h2>Storage and sharing</h2>
+    <p>The dashboard runs in your browser. Calendar event data is requested directly from Google Calendar and processed in the browser; the dashboard does not send that event data to a separate server or store it in a database. The temporary access token is kept in page memory. The browser stores a small setting indicating that Calendar permission was previously granted; it does not store event details or the access token.</p>
+    <p>The dashboard does not sell or share calendar event data. Google receives the authorization and Calendar API requests and handles them under <a href="https://policies.google.com/privacy">Google’s Privacy Policy</a>. The static website is hosted by GitHub Pages, which serves the dashboard files.</p>
+
+    <h2>Your choices</h2>
+    <p>You can stop using the dashboard at any time. You can revoke its Google Account access from <a href="https://myaccount.google.com/permissions">your Google Account’s third-party connections</a>. You can also clear the dashboard’s website data in your browser.</p>
+
+    <h2>Contact</h2>
+    <p>For questions about this policy, contact <a href="mailto:andrewdarling7@gmail.com">andrewdarling7@gmail.com</a>.</p>
+
+    <footer><a href="classesleft.html">Return to the Classes Dashboard</a></footer>
+  </main>
+</body>
+</html>
