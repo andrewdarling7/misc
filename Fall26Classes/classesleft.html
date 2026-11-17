@@ -1,140 +1,135 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>Classes</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f7fb">
+  <title>Fall 2026 Classes</title>
   <style>
-    .bin {
-      padding-left: 10px;
-      padding-bottom: 15x;
-      border: 1px solid black;
-      border-radius: 10px;
-      margin-bottom: 5px;
-      margin-top: 5px;
+    * { box-sizing: border-box; }
+    :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body {
+      margin: 0;
+      min-height: 100svh;
+      padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+      background: #f6f7fb;
+      color: #18202c;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
-
-    h1 {
-      font-family: arial;
-      font-weight: bold;
-      color: black;
-      text-shadow: #ffffff 1px 0 10px;
-      margin-bottom: 0px;
-      margin-top: 0px;
+    .topbar { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    h1 { margin:0; font-size: clamp(21px, 6vw, 30px); line-height:1.1; letter-spacing:-.03em; }
+    .subtitle { margin:3px 0 0; color:#657083; font-size:13px; }
+    #changeButton {
+      border:0; border-radius:999px; padding:10px 13px; background:#202a3a; color:#fff;
+      font:600 13px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; white-space:nowrap;
+      min-height:40px; cursor:pointer;
     }
-
-    h2 {
-      font-family: arial;
-      font-weight: bold;
-      color: red;
-      text-shadow: #ffffff 1px 0 10px;
-      margin-top: 0px;
-      margin-bottom: 0px;
+    .grid { flex:1; min-height:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(3,minmax(0,1fr)); gap:9px; }
+    .tile {
+      min-width:0; min-height:0; display:flex; flex-direction:column; justify-content:space-between;
+      padding:clamp(9px,2.7vw,14px); border:1px solid rgba(26,34,48,.14); border-radius:15px;
+      color:#18202c; text-decoration:none; box-shadow:0 2px 8px rgba(20,30,45,.06);
+      -webkit-tap-highlight-color:transparent;
     }
-
-    h3 {
-      font-family: arial;
-      font-weight: bold;
-      color: blue;
-      text-shadow: #ffffff 1px 0 10px;
-      margin-top: 0px;
-      margin-bottom: 0px;
+    .tile:active { transform:scale(.98); }
+    .course { font-size:clamp(11px,3vw,14px); font-weight:750; line-height:1.2; overflow-wrap:anywhere; }
+    .instructor { display:block; margin-top:3px; font-size:clamp(10px,2.6vw,12px); font-weight:500; opacity:.78; }
+    .count { margin:auto 0 1px; font-size:clamp(32px,10vw,48px); line-height:.95; font-weight:750; letter-spacing:-.05em; font-variant-numeric:tabular-nums; }
+    .count-label { font-size:clamp(10px,2.6vw,12px); color:rgba(24,32,44,.72); }
+    .event { margin-top:8px; padding-top:7px; border-top:1px solid rgba(24,32,44,.14); font-size:clamp(10px,2.55vw,12px); line-height:1.2; font-weight:600; }
+    .event-label { display:block; margin-bottom:2px; font-size:9px; text-transform:uppercase; letter-spacing:.08em; opacity:.68; }
+    .tile--1 { background:#E3F5D9; }
+    .tile--2 { background:#E9E9F7; }
+    .tile--3 { background:#FFEDC4; }
+    .tile--4 { background:#9b9bd4; }
+    .tile--5 { background:#f78191; }
+    .tile--6 { background:#b77ceb; }
+    .tile--7 { background:#2bdfec; }
+    dialog { width:min(420px, calc(100% - 28px)); border:0; border-radius:18px; padding:20px; box-shadow:0 16px 50px #1115; }
+    dialog::backdrop { background:#10182788; }
+    dialog h2 { margin:0 0 14px; font-size:20px; }
+    .edit-grid { display:grid; grid-template-columns:1fr auto; gap:10px 12px; align-items:center; }
+    .edit-grid label { font-size:14px; }
+    .edit-grid input { width:76px; padding:8px; border:1px solid #cbd1dc; border-radius:8px; font:inherit; }
+    .dialog-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:18px; }
+    .dialog-actions button { min-height:40px; padding:8px 13px; border:0; border-radius:9px; background:#202a3a; color:white; font:600 14px inherit; }
+    .dialog-actions #cancelChanges { background:#e9edf3; color:#273142; }
+    @media (min-width:700px) {
+      body { max-width:1100px; margin:0 auto; padding:24px; gap:16px; }
+      .grid { gap:14px; }
+      .tile { padding:18px; border-radius:18px; }
+      .course { font-size:16px; }
+      .instructor,.event { font-size:14px; }
+      .count { font-size:56px; }
+      .count-label { font-size:13px; }
     }
-
-    a {
-      text-decoration: none;
+    @media (max-height:700px) and (max-width:699px) {
+      body { padding-top:max(7px, env(safe-area-inset-top)); padding-bottom:max(7px, env(safe-area-inset-bottom)); gap:7px; }
+      .grid { gap:6px; }
+      .tile { padding:7px; border-radius:12px; }
+      .event { margin-top:5px; padding-top:4px; }
     }
   </style>
 </head>
-
 <body>
+  <header class="topbar">
+    <div><h1>Fall 2026</h1><p class="subtitle">Seven courses · tap a course to open</p></div>
+    <button id="changeButton" type="button">Edit counts</button>
+  </header>
 
-  <div class="bin" id="1" style="background-color: #E3F5D9">
-    <h1>MT5003: Sibley</h1>
-    <h2>Remaining Classes: <span id="MT5003"></span></h2>
-  </div>
-
-  <a href="prophets.html">
-    <div class="bin" id="2" style="background-color: #E9E9F7">
-      <h1>SS5003: Vall</h1>
-      <h2>Remaining Classes: <span id="SS5003"></span></h2>
-      <h3>Final: Wed, 12/9 [2PM]</h3>
-    </div>
-  </a>
-
-  <a href="greek.html">
-    <div class="bin" id="3" style="background-color: #FFEDC4">
-      <h1>BEL6201: Greek</h1>
-      <h3>Final: Wed, 11/18 [2:30PM]</h3>
-    </div>
-  </a>
-
-  <a href="baptism.html">
-    <div class="bin" id="4" style="background-color: #9b9bd4">
-      <h1>SL5003: Deo</h1>
-      <h3>Final: TBD [TBD]</h3>
-    </div>
-  </a>
-
-  <div class="bin" id="5" style="background-color: #f78191">
-    <h1>EH5003: Raphael</h1>
-    <h2>Remaining Classes: <span id="EH5003"></span></h2>
-  </div>
-
-  <a href="christology.html">
-    <div class="bin" id="6" style="background-color: #b77ceb">
-      <h1>DT5003: Liberto</h1>
-      <h2>Remaining Classes: <span id="DT5003"></span></h2>
-      <h3>Final: Tue, 12/1 [1:30PM]</h3>
-    </div>
-  </a>
-
-  <div class="bin" id="7" style="background-color: #2bdfec">
-    <h1>PT5003: Fonseca</h1>
-    <h2>Remaining Classes: <span id="PT5003"></span></h2>
-  </div>
-
-  <div style="text-align: center;">
-    <button id="changeButton">Change Remaining Classes</button>
-  </div>
+  <main class="grid" aria-label="Fall 2026 courses">
+    <a class="tile tile--1" href="moraltheology.html">
+      <span class="course">MT5003<span class="instructor">Sibley</span></span>
+      <span class="count" id="MT5003"></span><span class="count-label">classes left</span>
+      <span class="event"><span class="event-label">Final</span>Date not listed</span>
+    </a>
+    <a class="tile tile--2" href="prophets.html">
+      <span class="course">SS5003<span class="instructor">Vall</span></span>
+      <span class="count" id="SS5003"></span><span class="count-label">classes left</span>
+      <span class="event"><span class="event-label">Final</span>Wed, Dec 9 · 2 PM</span>
+    </a>
+    <a class="tile tile--3" href="greek.html">
+      <span class="course">BEL6201<span class="instructor">Greek</span></span>
+      <span class="count" id="BEL6201"></span><span class="count-label">classes left</span>
+      <span class="event"><span class="event-label">Final</span>Wed, Nov 18 · 2:30 PM</span>
+    </a>
+    <a class="tile tile--4" href="baptism.html">
+      <span class="course">SL5003<span class="instructor">Deo</span></span>
+      <span class="count" id="SL5003"></span><span class="count-label">classes left</span>
+      <span class="event"><span class="event-label">Final</span>Date and time TBD</span>
+    </a>
+    <a class="tile tile--5" href="medieval.html">
+      <span class="course">EH5003<span class="instructor">Raphael</span></span>
+      <span class="count" id="EH5003"></span><span class="count-label">classes left</span>
+      <span class="event"><span class="event-label">Final</span>Date not listed</span>
+    </a>
+    <a class="tile tile--6" href="christology.html">
+      <span class="course">DT5003<span class="instructor">Liberto</span></span>
+      <span class="count" id="DT5003"></span><span class="count-label">classes left</span>
+      <span class="event"><span class="event-label">Final</span>Tue, Dec 1 · 1:30 PM</span>
+    </a>
+    <a class="tile tile--7" href="counseling.html">
+      <span class="course">PT5003<span class="instructor">Fonseca</span></span>
+      <span class="count" id="PT5003"></span><span class="count-label">classes left</span>
+      <span class="event"><span class="event-label">Final</span>Date not listed</span>
+    </a>
+  </main>
 
   <dialog id="changeDialog">
-    <h2>Change Remaining Classes</h2>
-
-    <label>MT5003: Sibley
-      <input type="number" id="editMT5003">
-    </label><br>
-
-    <label>SS5003: Vall
-      <input type="number" id="editSS5003">
-    </label><br>
-
-    <label>BEL6201: Greek
-      <input type="number" id="editGreek">
-    </label><br>
-
-    <label>SL5003: Deo
-      <input type="number" id="editBaptism">
-    </label><br>
-
-    <label>EH5003: Raphael
-      <input type="number" id="editMedieval">
-    </label><br>
-
-    <label>DT5003: Liberto
-      <input type="number" id="editChristology">
-    </label><br>
-
-    <label>PT5003: Fonseca
-      <input type="number" id="editCounseling">
-    </label><br><br>
-
-    <button id="saveChanges">Save Changes</button>
-    <button id="cancelChanges">Cancel</button>
+    <h2>Change remaining classes</h2>
+    <div class="edit-grid">
+      <label for="editMT5003">MT5003: Sibley</label><input type="number" id="editMT5003" min="0">
+      <label for="editSS5003">SS5003: Vall</label><input type="number" id="editSS5003" min="0">
+      <label for="editGreek">BEL6201: Greek</label><input type="number" id="editGreek" min="0">
+      <label for="editBaptism">SL5003: Deo</label><input type="number" id="editBaptism" min="0">
+      <label for="editMedieval">EH5003: Raphael</label><input type="number" id="editMedieval" min="0">
+      <label for="editChristology">DT5003: Liberto</label><input type="number" id="editChristology" min="0">
+      <label for="editCounseling">PT5003: Fonseca</label><input type="number" id="editCounseling" min="0">
+    </div>
+    <div class="dialog-actions"><button id="cancelChanges" type="button">Cancel</button><button id="saveChanges" type="button">Save changes</button></div>
   </dialog>
-
-
   <script src="script.js"></script>
-
 </body>
-
 </html>
