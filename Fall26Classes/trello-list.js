@@ -89,7 +89,13 @@
         return;
       }
       if (!response.ok) throw new Error("Trello request failed");
-      renderCards(container, await response.json());
+      const cards = await response.json();
+      const markerNames = new Set(["NEXT CLASS", "NEXT NEXT CLASS"]);
+      const visibleCards = cards.filter(card => {
+        const normalizedName = (card.name || "").trim().replace(/\\s+/g, " ").toUpperCase();
+        return !markerNames.has(normalizedName);
+      });
+      renderCards(container, visibleCards);
     } catch (_) {
       setMessage(container, "Could not load this Trello list. Check your connection and try again.", "is-error");
     }
