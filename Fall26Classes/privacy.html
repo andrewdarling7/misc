@@ -82,13 +82,13 @@
     <p>The dashboard uses event titles, dates, recurrence information, and status returned by Google to count confirmed recurring class events whose titles begin with a course ID. It displays those counts in the dashboard. It does not use calendar contents for advertising, profiling, or any other purpose.</p>
 
     <h2>Storage and sharing</h2>
-    <p>The dashboard runs in your browser. Calendar event data is requested directly from Google Calendar and processed in the browser; the dashboard does not send that event data to a separate server or store it in a database. The temporary access token is kept in page memory. The browser stores a small setting indicating that Calendar permission was previously granted; it does not store event details or the access token.</p>
+    <p>The dashboard runs in your browser. Calendar event data is requested directly from Google Calendar and processed in the browser; the dashboard does not send that event data to a separate server or store it in a database. The temporary Google Calendar access token is kept in page memory. The browser stores a small setting indicating that Calendar permission was previously granted; it does not store Calendar event details or the Google access token.</p>
     <p>The dashboard does not sell or share calendar event data. Google receives the authorization and Calendar API requests and handles them under <a href="https://policies.google.com/privacy">Google’s Privacy Policy</a>. The static website is hosted by GitHub Pages, which serves the dashboard files.</p>
 
     <h2>Trello access and use</h2>
     <p>When you choose Connect Trello, the dashboard requests read-only access to your Trello account. The connection token can read boards available to your account, but the dashboard code requests cards only from the seven class lists configured by course ID. The dashboard displays open cards and any due dates on the matching class page.</p>
 
-    <h2>Storage and sharing</h2>
+    <h2>Trello storage</h2>
     <p>Trello cards are requested directly from Trello and shown in your browser. The dashboard does not send card data to a separate server or store it in a database. The read-only Trello access token is saved in this browser’s local storage on this device so you do not need to reconnect whenever you return. Anyone with access to this browser profile can use that saved connection. The token is not included in the public website files or GitHub repository.</p>
     <p>You can revoke Trello access from your Trello account’s connected apps or account settings, and you can remove the saved token by clearing this site’s browser storage. Trello handles authorization and API requests under <a href="https://www.atlassian.com/legal/privacy-policy">Atlassian’s Privacy Policy</a>.</p>
 
