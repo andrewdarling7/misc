@@ -47,6 +47,7 @@ function initializeTokenClient() {
       },
       error_callback: (error) => {
         setStatus(error.message || "Google sign-in could not open. Tap to try again.", "error");
+        isSyncing = false;
         connectButton.disabled = false;
       },
     });
