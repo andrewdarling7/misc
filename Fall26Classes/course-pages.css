@@ -71,31 +71,38 @@ main {
 .course-count {
   flex: 0 0 auto;
   display: flex;
-  min-width: 60px;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 6px 8px;
+  gap: 5px;
+  padding: 4px 7px;
   border: 1px solid rgba(26, 34, 48, .12);
   border-radius: 13px;
   background: rgba(255, 255, 255, .48);
-  text-align: center;
   font-variant-numeric: tabular-nums;
 }
 
 .course-count[hidden] { display: none; }
 
 .course-count strong {
-  font-size: 23px;
-  line-height: .95;
+  font-size: clamp(42px, 11vw, 64px);
+  line-height: .9;
   font-weight: 750;
+  letter-spacing: -.05em;
 }
 
 .course-count span {
-  margin-top: 3px;
+  width: 42px;
   color: rgba(24, 32, 44, .76);
-  font-size: 9px;
-  line-height: 1.05;
+  font-size: 11px;
+  line-height: 1.15;
+}
+
+@media (max-width: 420px) {
+  .course-heading { gap: 4px; }
+  .course-heading-copy { flex: 1 1 auto; }
+  .course-count { gap: 3px; padding: 3px 5px; }
+  .course-count strong { font-size: 42px; }
+  .course-count span { width: 38px; font-size: 10px; }
+  .course-id { font-size: clamp(19px, 6vw, 25px); }
 }
 
 .course-id {
@@ -154,6 +161,9 @@ main[data-course="PT5003"] { --course-color: #2bdfec; }
   .course-header { min-height: 132px; grid-template-columns: 46px 68px minmax(0, 1fr); gap: 18px; padding: 22px; }
   .course-back { width: 44px; height: 44px; }
   .course-icon { width: 64px; height: 64px; }
+  .course-count { gap: 8px; padding: 6px 10px; }
+  .course-count strong { font-size: 74px; }
+  .course-count span { width: 56px; font-size: 15px; }
   .resources { gap: 14px; margin-top: 24px; }
   .resource-link { min-height: 60px; padding: 17px 20px; }
 }
