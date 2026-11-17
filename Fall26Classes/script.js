@@ -38,6 +38,7 @@ function initializeTokenClient() {
       callback: async (response) => {
         if (response.error) {
           setStatus("Google Calendar access was not granted. Tap to try again.", "error");
+          isSyncing = false;
           connectButton.disabled = false;
           return;
         }
