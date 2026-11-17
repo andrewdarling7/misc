@@ -20,7 +20,7 @@
     }
     .topbar { display:flex; justify-content:space-between; align-items:center; gap:12px; }
     h1 { margin:0; font-size: clamp(21px, 6vw, 30px); line-height:1.1; letter-spacing:-.03em; }
-    .subtitle { margin:3px 0 0; color:#657083; font-size:13px; }
+    .subtitle { margin:3px 0 0; color:#657083; font-size:13px; }\n    .calendar-status { margin:5px 0 0; color:#657083; font-size:11px; line-height:1.25; }\n    .calendar-status[data-state="error"], .calendar-status[data-state="setup"] { color:#8b3c35; }\n    .calendar-status[data-state="success"] { color:#386d49; }\n    #changeButton:disabled { opacity:.6; cursor:wait; }
     #changeButton {
       border:0; border-radius:999px; padding:10px 13px; background:#202a3a; color:#fff;
       font:600 13px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; white-space:nowrap;
@@ -80,8 +80,8 @@
 </head>
 <body>
   <header class="topbar">
-    <div><h1>Fall 2026</h1><p class="subtitle">Seven courses · tap a course to open</p></div>
-    <button id="changeButton" type="button">Edit counts</button>
+    <div><h1>Fall 2026</h1><p class="subtitle">Seven courses · tap a course to open</p><p id="calendarStatus" class="calendar-status" role="status" aria-live="polite"></p></div>
+    <button id="changeButton" type="button">Connect calendar</button>
   </header>
 
   <main class="grid" aria-label="Fall 2026 courses">
@@ -143,19 +143,7 @@
     </a>
   </main>
 
-  <dialog id="changeDialog">
-    <h2>Change remaining classes</h2>
-    <div class="edit-grid">
-      <label for="editMT5003">MT5003: Sibley</label><input type="number" id="editMT5003" min="0">
-      <label for="editSS5003">SS5003: Vall</label><input type="number" id="editSS5003" min="0">
-      <label for="editGreek">BEL6201: Greek</label><input type="number" id="editGreek" min="0">
-      <label for="editBaptism">SL5003: Deo</label><input type="number" id="editBaptism" min="0">
-      <label for="editMedieval">EH5003: Raphael</label><input type="number" id="editMedieval" min="0">
-      <label for="editChristology">DT5003: Liberto</label><input type="number" id="editChristology" min="0">
-      <label for="editCounseling">PT5003: Fonseca</label><input type="number" id="editCounseling" min="0">
-    </div>
-    <div class="dialog-actions"><button id="cancelChanges" type="button">Cancel</button><button id="saveChanges" type="button">Save changes</button></div>
-  </dialog>
-  <script src="script.js"></script>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>\n  <script src="calendar-config.js"></script>\n  <script src="script.js"></script>
 </body>
 </html>
