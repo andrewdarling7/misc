@@ -7,6 +7,7 @@ const connectButton = document.getElementById("changeButton");
 const statusMessage = document.getElementById("calendarStatus");
 let tokenClient = null;
 let isSyncing = false;
+let calendarPermissionGranted = localStorage.getItem("fall26CalendarReadOnlyGranted") === "true";
 
 function renderCounts() {
   for (const course of COURSES) {
@@ -43,6 +44,8 @@ function initializeTokenClient() {
           return;
         }
 
+        calendarPermissionGranted = true;
+        localStorage.setItem("fall26CalendarReadOnlyGranted", "true");
         await syncCalendar(response.access_token);
       },
       error_callback: (error) => {
@@ -138,7 +141,8 @@ connectButton.addEventListener("click", () => {
 
   isSyncing = true;
   connectButton.disabled = true;
-  tokenClient.requestAccessToken({ prompt: "" });
+  setStatus("Opening Google sign-in…", "loading");
+  tokenClient.requestAccessToken({ prompt: calendarPermissionGranted ? "" : "consent" });
 });
 
 renderCounts();
