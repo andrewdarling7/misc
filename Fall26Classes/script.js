@@ -18,11 +18,15 @@ if (savedClasses) {
   counselingLeft = savedClasses.counselingLeft;
 }
 
-document.getElementById('MT5003').innerHTML = moralLeft;
-document.getElementById('SS5003').innerHTML = prophetsLeft;
-document.getElementById('EH5003').innerHTML = medievalLeft;
-document.getElementById('DT5003').innerHTML = christologyLeft;
-document.getElementById('PT5003').innerHTML = counselingLeft;
+function renderCounts() {
+  document.getElementById('MT5003').textContent = moralLeft;
+  document.getElementById('SS5003').textContent = prophetsLeft;
+  document.getElementById('BEL6201').textContent = greekLeft;
+  document.getElementById('SL5003').textContent = baptismLeft;
+  document.getElementById('EH5003').textContent = medievalLeft;
+  document.getElementById('DT5003').textContent = christologyLeft;
+  document.getElementById('PT5003').textContent = counselingLeft;
+}
 
 function changeNumbers() {
   document.getElementById('editMT5003').value = moralLeft;
@@ -32,11 +36,8 @@ function changeNumbers() {
   document.getElementById('editMedieval').value = medievalLeft;
   document.getElementById('editChristology').value = christologyLeft;
   document.getElementById('editCounseling').value = counselingLeft;
-
   document.getElementById('changeDialog').showModal();
 }
-
-document.getElementById('changeButton').onclick = changeNumbers;
 
 function saveChanges() {
   moralLeft = Number(document.getElementById('editMT5003').value);
@@ -47,30 +48,18 @@ function saveChanges() {
   christologyLeft = Number(document.getElementById('editChristology').value);
   counselingLeft = Number(document.getElementById('editCounseling').value);
 
-  localStorage.setItem(
-    'savedClasses',
-    JSON.stringify({
-      moralLeft,
-      prophetsLeft,
-      greekLeft,
-      baptismLeft,
-      medievalLeft,
-      christologyLeft,
-      counselingLeft,
-    }),
-  );
+  localStorage.setItem('savedClasses', JSON.stringify({
+    moralLeft, prophetsLeft, greekLeft, baptismLeft,
+    medievalLeft, christologyLeft, counselingLeft,
+  }));
 
-  document.getElementById('MT5003').innerHTML = moralLeft;
-  document.getElementById('SS5003').innerHTML = prophetsLeft;
-  document.getElementById('EH5003').innerHTML = medievalLeft;
-  document.getElementById('DT5003').innerHTML = christologyLeft;
-  document.getElementById('PT5003').innerHTML = counselingLeft;
-
+  renderCounts();
   document.getElementById('changeDialog').close();
 }
 
-document.getElementById('saveChanges').onclick = saveChanges;
-
-document.getElementById('cancelChanges').onclick = function () {
+renderCounts();
+document.getElementById('changeButton').addEventListener('click', changeNumbers);
+document.getElementById('saveChanges').addEventListener('click', saveChanges);
+document.getElementById('cancelChanges').addEventListener('click', function () {
   document.getElementById('changeDialog').close();
-};
+});
