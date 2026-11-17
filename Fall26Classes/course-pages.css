@@ -58,7 +58,45 @@ main {
   object-fit: contain;
 }
 
-.course-heading { min-width: 0; }
+.course-heading {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.course-heading-copy { min-width: 0; }
+
+.course-count {
+  flex: 0 0 auto;
+  display: flex;
+  min-width: 60px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  border: 1px solid rgba(26, 34, 48, .12);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .48);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.course-count[hidden] { display: none; }
+
+.course-count strong {
+  font-size: 23px;
+  line-height: .95;
+  font-weight: 750;
+}
+
+.course-count span {
+  margin-top: 3px;
+  color: rgba(24, 32, 44, .76);
+  font-size: 9px;
+  line-height: 1.05;
+}
 
 .course-id {
   margin: 0;
