@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#f6f7fb"><title>Connecting Trello · Spring 2027 Classes</title><link rel="stylesheet" href="course-pages.css?v=1"></head>
+<body><main><section class="trello-section" aria-live="polite"><h1>Connecting Trello</h1><p id="auth-status">Finishing your secure connection…</p></section></main>
+<script>
+(() => {
+  const TOKEN_KEY="classesDashboardTrelloReadTokenV1", RETURN_KEY="classesDashboardTrelloReturnPathV1";
+  const allowed=new Set(["bioethics.html","synoptics.html","greek.html","eucharist.html","canonlaw.html","ecumenism.html","ecclesiology.html","classesleft.html"]);
+  const params=new URLSearchParams(location.hash.slice(1)),token=params.get("token");
+  history.replaceState(null,"",location.pathname+location.search);
+  const status=document.getElementById("auth-status");
+  if(!token){status.textContent="Trello did not return an access token. Return to a class page and try again.";return;}
+  try{
+    localStorage.setItem(TOKEN_KEY,token);
+    const saved=sessionStorage.getItem(RETURN_KEY);sessionStorage.removeItem(RETURN_KEY);
+    const target=saved?new URL(saved,location.origin):new URL("classesleft.html",location.href);
+    if(target.origin!==location.origin||!allowed.has(target.pathname.split("/").pop()))location.replace("classesleft.html");
+    else location.replace(target.pathname+target.search);
+  }catch(_){status.textContent="This browser could not save the Trello connection. Check that website storage is enabled, then try again.";}
+})();
+</script></body></html>
