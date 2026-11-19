@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f7fb">
+  <title>Spring 2027 Classes</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body {
+      margin: 0; min-height: 100svh;
+      padding: max(35px, calc(env(safe-area-inset-top) + 22px)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+      background: #f6f7fb; color: #18202c; display: flex; flex-direction: column; gap: 10px;
+    }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    h1 { margin: 0; font-size: clamp(21px, 6vw, 30px); line-height: 1.1; letter-spacing: -.03em; }
+    .subtitle { margin: 3px 0 0; color: #657083; font-size: 13px; }
+    .calendar-status { margin: 5px 0 0; color: #657083; font-size: 11px; line-height: 1.25; }
+    .calendar-status[data-state="error"], .calendar-status[data-state="setup"] { color: #8b3c35; }
+    .calendar-status[data-state="success"] { color: #386d49; }
+    #changeButton { border: 0; border-radius: 999px; padding: 10px 13px; background: #202a3a; color: #fff; font: 600 13px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; white-space: nowrap; min-height: 40px; cursor: pointer; }
+    #changeButton:disabled { opacity: .6; cursor: wait; }
+    .grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); grid-template-rows: repeat(3,minmax(0,1fr)); gap: 9px; }
+    .tile { min-width:0; min-height:0; display:flex; flex-direction:column; align-items:center; justify-content:space-between; padding:clamp(7px,2.2vw,13px); border:1px solid rgba(26,34,48,.14); border-radius:15px; color:#18202c; text-decoration:none; text-align:center; box-shadow:0 2px 8px rgba(20,30,45,.06); -webkit-tap-highlight-color:transparent; }
+    .tile:active { transform:scale(.98); }
+    .course-header { display:flex; flex-direction:column; align-items:center; gap:2px; width:100%; }
+    .course-symbol { height:clamp(30px,8vw,42px); display:flex; align-items:center; justify-content:center; }
+    .course-symbol img { width:clamp(48px,14vw,72px); height:clamp(28px,8vw,40px); display:block; object-fit:contain; }
+    .course { font-size:clamp(11px,3vw,15px); font-weight:750; line-height:1.15; overflow-wrap:anywhere; }
+    .instructor { display:block; margin-top:2px; font-size:clamp(9px,2.5vw,12px); font-weight:500; opacity:.78; }
+    .count-line { display:flex; align-items:center; justify-content:center; gap:6px; margin:auto 0; }
+    .count { font-size:clamp(34px,9.5vw,49px); line-height:.9; font-weight:750; letter-spacing:-.05em; font-variant-numeric:tabular-nums; }
+    .count-label { max-width:45px; font-size:clamp(9px,2.5vw,12px); line-height:1.15; text-align:left; color:rgba(24,32,44,.76); }
+    .event { width:100%; margin-top:6px; padding-top:5px; border-top:1px solid rgba(24,32,44,.18); font-size:clamp(9px,2.35vw,11px); line-height:1.2; font-weight:600; }
+    .event-label { display:block; margin-bottom:2px; font-size:9px; text-transform:uppercase; letter-spacing:.08em; opacity:.68; }
+    .tile--1 { background:#E3F5D9; }
+    .tile--2 { background:#E9E9F7; }
+    .tile--3 { background:#FFEDC4; }
+    .tile--4 { background:#9B9BD4; }
+    .tile--5 { background:#F78191; }
+    .tile--6 { background:#2BDFEC; }
+    .tile--7 { background:#B77CEB; }
+    .tile--8 { background:#c1c1c1; }
+    @media (min-width:700px) {
+      body { max-width:1100px; margin:0 auto; padding:24px; gap:16px; }
+      .grid { gap:14px; }
+      .tile { padding:18px; border-radius:18px; }
+      .course-symbol { height:58px; }
+      .course-symbol img { width:88px; height:46px; }
+      .course { font-size:16px; }
+      .instructor,.event { font-size:14px; }
+      .count { font-size:56px; }
+      .count-label { font-size:13px; }
+    }
+    @media (max-height:700px) and (max-width:699px) {
+      body { padding-top:max(35px,calc(env(safe-area-inset-top) + 22px)); padding-bottom:max(7px,env(safe-area-inset-bottom)); gap:7px; }
+      .grid { gap:6px; }
+      .tile { padding:6px; border-radius:12px; }
+      .course-symbol { height:28px; }
+      .course-symbol img { width:54px; height:28px; }
+      .event { margin-top:4px; padding-top:4px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Spring 2027</h1>
+      <p class="subtitle">Seven courses · tap a course to open</p>
+      <p id="calendarStatus" class="calendar-status" role="status" aria-live="polite"></p>
+    </div>
+    <button id="changeButton" type="button">Connect calendar</button>
+  </header>
+  <main class="grid" aria-label="Spring 2027 courses">
+    <a class="tile tile--1" href="bioethics.html"><span class="course-header"><span class="course-symbol" aria-hidden="true"><img src="MT5004.png" alt="" width="400" height="200"></span><span class="course">MT5004<span class="instructor">Sibley</span></span></span><span class="count-line"><span class="count" id="MT5004">—</span><span class="count-label">classes left</span></span><span class="event"><span class="event-label">Event</span>TimeDate</span></a>
+    <a class="tile tile--2" href="synoptics.html"><span class="course-header"><span class="course-symbol" aria-hidden="true"><img src="SS5004.png" alt="" width="400" height="200"></span><span class="course">SS5004<span class="instructor">Pitre</span></span></span><span class="count-line"><span class="count" id="SS5004">—</span><span class="count-label">classes left</span></span><span class="event"><span class="event-label">Event</span>TimeDate</span></a>
+    <a class="tile tile--3" href="greek.html"><span class="course-header"><span class="course-symbol" aria-hidden="true"><img src="BEL6202.png" alt="" width="400" height="200"></span><span class="course">BEL6202<span class="instructor">Redmann</span></span></span><span class="count-line"><span class="count" id="BEL6202">—</span><span class="count-label">classes left</span></span><span class="event"><span class="event-label">Event</span>TimeDate</span></a>
+    <a class="tile tile--4" href="eucharist.html"><span class="course-header"><span class="course-symbol" aria-hidden="true"><img src="SL5004.png" alt="" width="400" height="200"></span><span class="course">SL5004<span class="instructor">Ekisa</span></span></span><span class="count-line"><span class="count" id="SL5004">—</span><span class="count-label">classes left</span></span><span class="event"><span class="event-label">Event</span>TimeDate</span></a>
+    <a class="tile tile--5" href="canonlaw.html"><span class="course-header"><span class="course-symbol" aria-hidden="true"><img src="CL5004.png" alt="" width="400" height="200"></span><span class="course">CL5004<span class="instructor">Lapeyrouse</span></span></span><span class="count-line"><span class="count" id="CL5004">—</span><span class="count-label">classes left</span></span><span class="event"><span class="event-label">Event</span>TimeDate</span></a>
+    <a class="tile tile--6" href="ecumenism.html"><span class="course-header"><span class="course-symbol" aria-hidden="true"><img src="PT5004.png" alt="" width="400" height="200"></span><span class="course">PT5004<span class="instructor">Burns</span></span></span><span class="count-line"><span class="count" id="PT5004">—</span><span class="count-label">classes left</span></span><span class="event"><span class="event-label">Event</span>TimeDate</span></a>
+    <a class="tile tile--7" href="ecclesiology.html"><span class="course-header"><span class="course-symbol" aria-hidden="true"><img src="DT5004.png" alt="" width="400" height="200"></span><span class="course">DT5004<span class="instructor">Liberto</span></span></span><span class="count-line"><span class="count" id="DT5004">—</span><span class="count-label">classes left</span></span><span class="event"><span class="event-label">Event</span>TimeDate</span></a>
+    <a class="tile tile--8" href="https://1drv.ms/x/c/e9381d9f84310ba8/IQDboFvrV9poTIY4Wj0UNapEAYZY2e3HJeR686KPyaiIQ1E"><span class="course-header"><span class="course-symbol" aria-hidden="true"><img src="GRADES.png" alt="" width="200" height="200"></span><span class="course">Grades</span></span></a>
+  </main>
+  <footer style="display:none"><a href="https://andrewdarling7.github.io/misc/Fall26Classes/privacy.html">Privacy policy</a></footer>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="calendar-config.js?v=1"></script>
+  <script src="script.js?v=1"></script>
+</body>
+</html>
