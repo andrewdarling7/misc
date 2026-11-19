@@ -1,0 +1,37 @@
+:root { color-scheme:light; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:#18202c; background:#f6f7fb; }
+* { box-sizing:border-box; }
+body { min-height:100svh; margin:0; padding:max(22px,calc(env(safe-area-inset-top) + 12px)) max(16px,env(safe-area-inset-right)) max(22px,calc(env(safe-area-inset-bottom) + 12px)) max(16px,env(safe-area-inset-left)); }
+main { max-width:720px; margin:0 auto; }
+.course-header { display:grid; grid-template-columns:42px 82px minmax(0,1fr); align-items:center; gap:14px; min-height:112px; padding:18px; border:1px solid rgba(26,34,48,.14); border-radius:20px; background:var(--course-color,#e9e9f7); box-shadow:0 2px 8px rgba(20,30,45,.06); }
+.course-back { display:grid; width:40px; height:40px; place-items:center; border-radius:50%; color:#18202c; background:rgba(255,255,255,.42); font-size:29px; line-height:1; text-decoration:none; -webkit-tap-highlight-color:transparent; }
+.course-back:active { transform:scale(.94); }
+.course-icon { display:block; width:78px; height:48px; object-fit:contain; }
+.course-heading { min-width:0; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.course-heading-copy { min-width:0; }
+.course-id { margin:0; font-size:clamp(23px,6vw,32px); font-weight:750; line-height:1.05; letter-spacing:-.035em; overflow-wrap:anywhere; }
+.course-professor { margin:5px 0 0; color:rgba(24,32,44,.76); font-size:16px; line-height:1.2; }
+.course-count { flex:0 0 auto; display:flex; align-items:center; gap:5px; padding:4px 7px; border:1px solid rgba(26,34,48,.12); border-radius:13px; background:rgba(255,255,255,.48); font-variant-numeric:tabular-nums; }
+.course-count[hidden] { display:none; }
+.course-count strong { font-size:clamp(42px,11vw,64px); line-height:.9; font-weight:750; letter-spacing:-.05em; }
+.course-count span { width:42px; color:rgba(24,32,44,.76); font-size:11px; line-height:1.15; }
+.resources { display:grid; gap:11px; margin-top:20px; }
+.resource-link { display:flex; min-height:54px; align-items:center; justify-content:space-between; gap:14px; padding:14px 16px; border:1px solid #e2e6ee; border-radius:14px; color:#354e78; background:#fff; box-shadow:0 2px 8px rgba(20,30,45,.04); font-size:16px; font-weight:600; text-decoration:none; -webkit-tap-highlight-color:transparent; }
+.resource-link::after { content:"↗"; color:#657083; font-size:18px; }
+.trello-section { margin-top:20px; padding:18px; border:1px solid #e2e6ee; border-radius:18px; background:#fff; box-shadow:0 2px 8px rgba(20,30,45,.04); }
+.trello-section h2 { margin:0 0 12px; font-size:20px; letter-spacing:-.02em; }
+.trello-status { margin:0; color:#657083; font-size:15px; line-height:1.45; }
+.trello-status.is-error { color:#9a3038; }
+.trello-connect { display:inline-flex; min-height:48px; align-items:center; padding:11px 15px; border-radius:12px; color:#fff; background:#18202c; font-size:15px; font-weight:650; text-decoration:none; }
+.trello-cards { display:grid; gap:9px; margin:0; padding:0; list-style:none; }
+.trello-cards li { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:4px 12px; padding:12px 13px; border:1px solid #e7eaf0; border-radius:12px; background:#fbfcfe; }
+.trello-cards a { min-width:0; color:#354e78; font-size:15px; font-weight:600; line-height:1.35; text-decoration:none; }
+.trello-due { color:#657083; font-size:13px; white-space:nowrap; }
+main[data-course="MT5004"] { --course-color:#E3F5D9; }
+main[data-course="SS5004"] { --course-color:#E9E9F7; }
+main[data-course="BEL6202"] { --course-color:#FFEDC4; }
+main[data-course="SL5004"] { --course-color:#9B9BD4; }
+main[data-course="CL5004"] { --course-color:#F78191; }
+main[data-course="PT5004"] { --course-color:#2BDFEC; }
+main[data-course="DT5004"] { --course-color:#B77CEB; }
+@media (max-width:420px) { .course-header { grid-template-columns:36px 60px minmax(0,1fr); gap:9px; padding:14px; } .course-back { width:36px; height:36px; } .course-icon { width:58px; height:40px; } .course-heading { gap:4px; } .course-count { gap:3px; padding:3px 5px; } .course-count strong { font-size:42px; } .course-count span { width:38px; font-size:10px; } .course-id { font-size:clamp(19px,6vw,25px); } }
+@media (min-width:700px) { body { padding-top:32px; padding-bottom:32px; } .course-header { min-height:132px; grid-template-columns:46px 92px minmax(0,1fr); gap:18px; padding:22px; } .course-back { width:44px; height:44px; } .course-icon { width:88px; height:54px; } .course-count { gap:8px; padding:6px 10px; } .course-count strong { font-size:74px; } .course-count span { width:56px; font-size:15px; } .resources { gap:14px; margin-top:24px; } .resource-link { min-height:60px; padding:17px 20px; } .trello-section { margin-top:24px; padding:22px; } .trello-section h2 { font-size:22px; } }
